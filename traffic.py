@@ -53,6 +53,12 @@ def load_data(data_dir):
         for image_name in os.listdir(category_path):
             image_path = os.path.join(category_path, image_name)
             image = cv2.imread(image_path)
+
+            # Check if the image was successfully loaded
+            if image is None:
+                print(f"Warning: Could not load image at {image_path}")
+                continue
+
             image = cv2.resize(image, (IMG_WIDTH, IMG_HEIGHT))
 
             images.append(image)
